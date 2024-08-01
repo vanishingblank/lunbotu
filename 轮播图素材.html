@@ -99,14 +99,14 @@
     <div class="slider-footer">
       <p>对人类来说会不会太超前了？</p>
       <ul class="slider-indicator">
-        <li class="active"></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li class="active" id="one"></li>
+        <li id="two"></li>
+        <li id="three"></li>
+        <li id="four"></li>
+        <li id="five"></li>
+        <li id="six"></li>
+        <li id="seven"></li>
+        <li id="eight"></li>
       </ul>
       <div class="toggle">
         <button class="prev">&lt;</button>
@@ -166,7 +166,46 @@
       }
       letitgo(index);
     }
-
+    const oneb = document.getElementById('one');
+    oneb.addEventListener('click', function () {
+      index = 1;
+      letitgo(index);
+    })
+    const twob = document.getElementById('two');
+    twob.addEventListener('click', function () {
+      index = 2;
+      letitgo(index);
+    })
+    const threeb = document.getElementById('three');
+    threeb.addEventListener('click', function () {
+      index = 3;
+      letitgo(index);
+    })
+    const fourb = document.getElementById('four');
+    fourb.addEventListener('click', function () {
+      index = 4;
+      letitgo(index);
+    })
+    const fiveb = document.getElementById('five');
+    fiveb.addEventListener('click', function () {
+      index = 5;
+      letitgo(index);
+    })
+    const sixb = document.getElementById('six');
+    sixb.addEventListener('click', function () {
+      index = 6;
+      letitgo(index);
+    })
+    const sevenb = document.getElementById('seven');
+    sevenb.addEventListener('click', function () {
+      index = 7;
+      letitgo(index);
+    })
+    const eightb = document.getElementById('eight');
+    eightb.addEventListener('click', function () {
+      index = 8;
+      letitgo(index);
+    })
     const intervalID = setInterval(function () {
       if (index < 8) {
         index++;
