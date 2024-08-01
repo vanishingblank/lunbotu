@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>轮播图点击切换</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .slider {
+      width: 560px;
+      height: 400px;
+      overflow: hidden;
+    }
+
+    .slider-wrapper {
+      width: 100%;
+      height: 320px;
+    }
+
+    .slider-wrapper img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .slider-footer {
+      height: 80px;
+      background-color: rgb(100, 67, 68);
+      padding: 12px 12px 0 12px;
+      position: relative;
+    }
+
+    .slider-footer .toggle {
+      position: absolute;
+      right: 0;
+      top: 12px;
+      display: flex;
+    }
+
+    .slider-footer .toggle button {
+      margin-right: 12px;
+      width: 28px;
+      height: 28px;
+      appearance: none;
+      border: none;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .slider-footer .toggle button:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .slider-footer p {
+      margin: 0;
+      color: #fff;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .slider-indicator {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .slider-indicator li {
+      width: 8px;
+      height: 8px;
+      margin: 4px;
+      border-radius: 50%;
+      background: #fff;
+      opacity: 0.4;
+      cursor: pointer;
+    }
+
+    .slider-indicator li.active {
+      width: 12px;
+      height: 12px;
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="slider">
+    <div class="slider-wrapper">
+      <img src="./images/slider01.jpg" alt="" />
+    </div>
+    <div class="slider-footer">
+      <p>对人类来说会不会太超前了？</p>
+      <ul class="slider-indicator">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+      <div class="toggle">
+        <button class="prev">&lt;</button>
+        <button class="next">&gt;</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 完成视频中的图片自动切换的功能，并且可以点击进行切换
+
+    // 提示，初始数据可以定义数组对象变量存放
+    // 例如 const sliderData = [
+    //   { url: './images/slider01.jpg', title: '对人类来说会不会太超前了？', color: 'rgb(100, 67, 68)' },
+    // ]
+
+    function henshin(index) {
+      const srcli = document.querySelectorAll('li');
+      srcli.forEach(function (ele, ind) {
+        if (ind === index - 1) {
+          ele.classList.add('active');
+        } else if (ele.classList.contains('active')) {
+          ele.classList.remove('active');
+        }
+      })
+    }
+    function letitgo(index) {
+      const srcimg = document.querySelector('img');
+      srcimg.setAttribute('src', `${sliderData[index - 1].url}`);
+      const srcword = document.querySelector('p');
+      srcword.innerText = sliderData[index - 1].title;
+      const srccolor = document.querySelector('.slider-footer');
+      srccolor.style.backgroundColor = sliderData[index - 1].color;
+      henshin(index);
+    }
+    let index = 1;
+    const leftb = document.querySelector('.prev');
+    leftb.onclick = function () {
+      /*const bigli = document.querySelector('.active');
+      bigli.classList.remove('active');*/
+      if (index === 1) {
+        index = 8;
+      } else {
+        index--;
+      }
+      letitgo(index);
+    }
+
+    const rightb = document.querySelector('.next');
+    rightb.onclick = function () {
+      /*const bigli = document.querySelector('.active');
+      bigli.classList.remove('active');*/
+      if (index === 8) {
+        index = 1;
+      } else {
+        index++;
+      }
+      letitgo(index);
+    }
+
+    const intervalID = setInterval(function () {
+      if (index < 8) {
+        index++;
+      } else {
+        index = 1;
+      }
+
+      letitgo(index);
+    }, 2000);
+    const sliderData = [
+      { url: './images/slider01.jpg', title: '对人类来说会不会太超前了？', color: 'rgb(100, 67, 68)' },
+      { url: './images/slider02.jpg', title: 'Is this too advanced for humans?', color: 'rgb(0, 0, 0)' },
+      { url: './images/slider03.jpg', title: '人間にとっては進化しすぎているのでしょうか？', color: 'rgb(72, 61, 139)' },
+      { url: './images/slider04.jpg', title: 'Ist es für den Menschen zu fortgeschritten?', color: 'rgb(192, 192, 192)' },
+      { url: './images/slider05.jpg', title: 'Это слишком продвинуто для людей?', color: 'rgb(70, 130, 180)' },
+      { url: './images/slider06.jpg', title: 'Est-ce trop avancé pour les humains ?', color: 'rgb(200, 200, 250)' },
+      { url: './images/slider07.jpg', title: 'È troppo avanzato per gli esseri umani?', color: 'rgb(165, 42, 42)' },
+      { url: './images/slider08.jpg', title: 'มันก้าวหน้าเกินไปสำหรับมนุษย์หรือเปล่า?', color: 'rgb(255, 182, 193)' },
+    ];
+
+  </script>
+</body>
+
+</html>
